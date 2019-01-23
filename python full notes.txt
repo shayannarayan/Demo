@@ -1,0 +1,1505 @@
+install python 2.7.x 
+
+from "www.python.org"
+or
+from samsung app-store
+
+
+5 Implementations of Python:-
+=============================
+
+1) written using "C"    - CPython
+2) written using "JAva" - Jython
+3) written using "C#"   - Iron Python
+4) written using "C"&CPy- Stackless Python
+5) written using "Cpy"  - PYPY
+
+
+
+int-class:-
+===========
+>> im-mutable
+>> non-collection
+
+
+num1=25
+num2=0b110
+num3=0o123
+num4=0xffff
+
+print bin(num1)  # num1 shld be a integer
+print hex(num1)
+print oct(num1)
+
+
+num="10101"  # convert this binary string into decimal equivalent
+
+res = int(num,base=2)  # Constructor
+OR
+res = int(num,2)
+
+
+num=8405   # how to display the first DIGIT ?
+
+print str(num)[0]
+
+
+
+str-class:-
+===========
+>> im-mutable
+>> collection of chars
+>> default char set is "ASCII" - Py2
+>> default char set is UNICODE - Py3
+>> supports unicode - web/database
+>> res = unicode("hello")        # ascii to unicode conversion
+>> ascii = res.encode("ascii")   # uncode to ascii conversion
+>> ord("a")  - display the ascii value of the alphabet
+>> chr(97)   - display the char of the ascii value
+
+
+a='hello\nworld'
+a="hello\nworld"
+a='''hello
+world'''        
+
+a=r"hello\nworld"
+a=R"hello\nworld"
+
+
+
+length of the string : len(a)
+first element        : a[0]
+last element         : a[len(a)-1] / a[-1]
+first 4              : a[0:4] / a[:4]
+except first 4       : a[4:]
+last 4               : a[-4:] 
+except last 4        : a[:-4]
+EF4 - EL4            : a[4:-4]
+Even index elem      : a[::2]
+Odd Index elem       : a[1::2]
+reverse              : a[::-1]
+Convert to upper     : b = a.upper()  # copy of the string got modified 
+Concatenate          : b = a+b
+Replace              : b = a.replace("old","new")
+Count substr occur   : res = a.count("substr")
+search for substr    : if "substr" in a        # returns True/False
+Search for substr    : res = a.index("substr") # returns index position/Exception
+strip sp/tab/newline : res = a.strip()         # a.lstrip() / a.rstrip()
+split                : fieldlst = a.split(delimiter)
+join                 : res = "delimiter".join(stringlst)
+
+
+
+Given   :- avinash
+Expected:- Avinash
+
+solution:-
+----------
+name = raw_input("Enter u r name : ")
+first = name[0].upper()
+rem   = name[1:]
+newstr = first + rem
+print name
+print newstr
+
+
+solution:-
+----------
+name = raw_input("Enter u r name : ")
+newstr = name[0].upper() + name[1:]
+print name
+print newstr
+
+
+Given:- manish
+Expected: MA-NI-SH
+
+solution:-
+----------
+name = raw_input("Enter u r name : ")
+newstr = name[0:2].upper() +"-"+ name[2:-2] +"-"+name[-2:].upper()
+print name
+print newstr
+
+
+Given:- 12345678
+Expe :- 12345876
+
+solution:-
+----------
+name = raw_input("Enter u r name : ")
+newstr = name[0:-3] + name[-3:][::-1]
+print newstr
+print name
+
+
+Questions:-
+===========
+
+1) a="hello world of unix"
+
+first word ?
+last word ?
+first word's last char ?
+last word's first char ?
+
+wlst = a.split()
+print wlst[0]
+print wlst[-1]
+print wlst[0][-1]
+print wlst[-1][0]
+
+
+2) a="arun|cse|blr|10,20,30"
+find total marks
+
+markslst = a.split("|")[-1].split(",")
+markslst = map(int, markslst)                 ######## Trick-1
+markslst = [int(elem) for elem in markslst ]  ######## Trick-2
+print sum(markslst)
+
+
+3) a="10-20 30 40 50-60 70"
+i don't know the order of spaces & hyphens
+display the first 3
+display the last 3
+
+flst = a.replace("-"," ").split()
+print flst[0:3]
+print flst[-3:]
+
+Questions - map & lambda:-
+==========================
+
+namelst = ["arun","ravi","shyam","ram","hari"]
+get the first & last char of each name
+
+alst = map(lambda x : x[0]+x[-1] , namelst)
+
+
+numlst = [1234,56,243,65,23,878]
+get the first digit of each number
+
+alst = map(lambda x : str(x)[0], numlst)
+
+datalst = [[10,20,30], [40,50,60], [70,80,90]]
+get the sum of each sublist
+
+alst = map(lambda x : sum(x) , datalst)
+
+
+===================================================================================
+if-else:-
+=========
+>> else if in python - "elif"
+>> &&                - "and"
+>> ||                - "or"
+
+
+
+Given:-
+========
+"12-oct-2017"
+
+Expected:-
+==========
+it is not a LEap Year
+
+
+
+
+
+range() & xrange():-
+=====================
+>> used to generate natural numbers
+>> always returns LIST/Iterator
+
+range(Start,stop-1,step)
+range(Stop-1)
+
+xrange(Start,stop-1,step)
+xrange(Stop-1)
+
+
+
+[10,15,20,25,30,35] - range(10,36,5)
+[1,2,3,4,5,6,7,8]   - range(1,9)
+[0,2,4,6,8]         - range(0,9,2)
+[0,1,2,3,4]         - range(0,5)/range(5)
+[5,4,3,2,1]         - range(5,0,-1)
+
+
+
+iterator protocol:-
+===================
+>> works on a collection
+>> should know where to start ?
+>> should know how to move ahead/behind
+>> stops when it encounters a exception "StopIteration"
+
+ex:
+numlst [10,20,30,40]
+
+it = iter(numlst)
+
+print next(it)
+print next(it)
+print next(it)
+print next(it)
+
+print next(i)
+
+
+for-iterator:-
+===============
+
+# never use this logic henceforth
+
+numlst [10,20,30,40]
+it = iter(numlst)
+
+for element in it:
+   print "Hello",element
+
+
+ex1:-
+=====
+for elem in numlst:
+  print elem
+
+ex2:
+====
+for index in xrange(len(numlst)):
+  print index, numlst[index]
+
+ex3:
+====
+for index,value in enumerate(numlst):
+  print index,value
+
+ex4:
+====
+alst = [10,20,30,40]
+blst = ["A","B","C","D"]
+
+for elem1,elem2 in zip(alst,blst):
+  print elem1,elem2
+
+
+
+tuple-class:-
+=============
+>> constant collection
+>> im-mutable
+>> supports mixed type
+>> faster than list
+>> can be used as dict-key
+
+
+define           : a=(10,20,30,40)
+                 : a=10,20,30,40
+length           : len(a)
+first elem       : a[0]
+search 50        : if 50 in a:
+compare 2 tuples : if a==b:
+merge 2 tuples   : c=a+b
+iterate a tuple  : for elem in a:
+                     print elem
+
+
+Tuple unpacking:-
+-----------------
+1) a,b,c = 10,20,30
+   a,b,c = 10,20,30,40,50,60   # invalid
+   a,b,c = 10,20               # invalid
+
+2) a,b  = "today" , "tom"
+   a,b  = b,a
+
+   print a   # "tom" 
+   print b   # "today"
+
+3) print "Hello %s %s %s" %(a,b,c)
+
+4) name="ravi"
+   a,b,c,d = name
+   
+5) dob = "15-aug-1947"
+
+   day,month,year = dob.split("-")
+   
+
+
+
+list-class:-
+============
+>> collection
+>> mutable
+>> supports mixed type
+
+
+define a emptylst : alst = []
+define a lst      : alst = [10,20,30,40]
+length            : len(alst)
+is it valid       : alst[0] = 55   # valid
+search for 50     : if 50 in alst:
+
+add new elem 60   : alst.append(60)          # actual list
+add 70,80,90      : alst.extend([70,80,90])  # actual
+insert            : alst.insert(index,value) 
+
+del based on index: alst.pop(index)
+del based on value: alst.remove(40)  # first occurance
+del slice         : del alst[0:4]
+reverse           : alst.reverse()
+sort asc order    : alst.sort() 
+sort desc order   : alst.sort(reverse=True)
+stat fns          : sum(alst)
+                    max(alst)
+                    min(alst)
+
+
+Questions:-
+===========
+numlst = [10,21,43,23,65,12,54,23]
+
+Expected:-
+==========
+oddlst = [21,43,23,65,23]
+evenlst = [10,12,54]
+
+
+solution:-
+----------
+numlst = [10,21,43,23,65,12,54,23]
+oddlst=[]
+evenlst=[]
+
+for elem in numlst:
+  if elem%2==0:
+    evenlst.append(elem)
+  else:
+    oddlst.append(elem)
+
+print oddlst
+print evelst
+
+
+Given:-
+=======
+studlst = [
+            ["arun","Cse","10,20,30"],
+            ["ravi","ece","30,40,20"],
+            ["john","civ","32,12,53"]
+          ]
+
+Expected:-
+===========
+arun max score is 30
+ravi max score is 40
+john max score is 53
+
+
+solution:-
+==========
+
+for newlst in studlst:
+   name,dept,marks = newlst
+   mlst = marks.split(",")
+   mlst = map(int,mlst)
+   print name,"best score is ",max(mlst)
+
+
+
+Given:-
+=======
+team1 = ["arun","ravi","john","hari"]
+team2 = ["manu","abhi","shyam","arun","hari"]
+
+Expected:-
+==========
+Common b/w team1 & team2 are ["arun","hari"]
+
+
+solution:-
+==========
+clst=[]
+for elem1 in team1:
+  for elem2 in team2:
+    if elem1==elem2:
+      clst.append(elem1)
+
+OR
+clst=[]
+for elem1 in team1:
+  if elem1 in team2:
+    clst.append(elem1)
+
+OR
+
+print set(team1)&set(team2)
+
+
+
+set-class:-
+===========
+>> Non-sequence
+>> un ordered collection of UNIQUE-VALUES
+>> duplicates are deleted auotmatically
+>> mutable
+
+
+define a empty set  : a = set()
+define a set        : a = {10,20,30,10,40,10}
+                    : b = {40,50,60,70}
+length              : len(a)
+search for 50       : if 50 in a:
+add element         : a.add(60)  
+
+union               : res = a|b
+intersection        : res = a&b
+difference          : res = a-b
+uncommon b/w 2      : res = a^b
+
+
+dict-class:-
+============
+>> non-sequence
+>> collection of key-value pairs
+>> mutable
+>> lookup table/ hashes/ hashtable/map / hashmap
+
+
+define a empty dict   :  colors = {}
+define a dict         :  colors={"red":10,"green":20,"blue":30}
+length                :  len(colors)
+search for "black"    :  if "black" in colors.keys()
+get value of "blue"   :  print colors["blue"]
+over write - red-55   :  colors["red"] = 55
+add "white" - 40      :  colors["white"] = 40   *** CREATE NEW KEY - VALUE*****
+delete "red"          :  colors.pop("red")
+
+key list              :  lst1 = colors.keys()
+value list            :  lst2 = colors.values()
+
+Iterate a dict        :  for key in colors.keys():
+                             print key, colors[key]
+
+
+Given:-
+-------
+studs = { 
+          "arun"  : [40,30,10,45,23],
+          "ravi"  : [32,54,43,23,65],
+          "manu"  : [43,23,65,34,76],
+          "raja"  : [32,54,34,87,53]
+        } 
+
+Expected:
+---------
+Enter student name: manu
+name     = manu
+2nd best = 65
+
+solution:-
+==========
+studname = raw_input("Enter u r name : ").lower()
+if studname in studs.keys()
+   print "Name = ",studname
+   studs[studname].sort()
+   print "2nd best = ",studs[studname][-2]
+else:
+   print "Invalid stud name"
+
+
+Given:-
+=======
+zonelst = ["north-10-20-30-40",
+           "south-11-32-43-23",
+           "west-32-43-32-53", 
+           "east-45-23-54-23"
+          ]
+
+Expected:-
+========== 
+zones = {"north" : [10,20,30,40],
+         "south" : [11,32,43,23],   
+         "west"  : [32,43,32,53],
+         "east"  : [45,23,54,23]
+        }
+    
+solution:-
+==========
+zones = {}
+for elem in zonelst:
+   flst = elem.split("-")
+   zonename = flst[0]
+   vlst     = map(int,flst[1:])
+   zones[zonename] = vlst
+
+print zones
+
+
+
+Extended Data Structures:-
+==========================
+a = [
+      [10,20,30],
+      [40,50,60],
+      [70,80,90]
+    ]
+
+
+a = { 
+     "arun"  : [10,20,30],
+     "ravi"  : [40,50,50]
+    }
+
+a["arun"][0]
+a["ravi"][-1]
+
+
+a= {
+    "arun"   :  {"dept" : "Cse", "marks": [10,20,30] },
+    "ravi"   :  {"dept" : "ece", "marks": [40,50,60] }
+    }
+
+
+dept of "arun"      -- a["arun"]["dept"]
+first marks "ravi"  -- a["ravi"]["marks"][0]
+
+
+
+
+
+
+
+How to install a Python Library from a repo:-
+----------------------------------------------
+c:\python27\scripts> pip2.7.exe  install numpy
+OR
+c:\python27\scripts> easy_install.exe  numpy
+
+
+Note:
+-----
+>> ur data connection shld have permission to download
+>> ur login shld have admin priv
+>> it expectes to have VC++ compiler - aka.ms/vcpython27
+
+
+Intro to numpy module:-
+-----------------------
+>> this library is written in "C" - avail in python  - Cython
+>> it is nearly 150% faster than actual python code
+>> compulsory module - DataSci/ML/Matplot & many more
+
+
+import numpy  
+
+mat1 = numpy.array([[1,2],[3,4]])
+mat2 = numpy.array([[1,2],[3,4]])
+
+print mat1
+print mat2
+
+print mat1+mat2
+print mat1.dot(mat2)
+
+print mat1.diagonal()
+print mat1.transpose()
+
+print mat1.sum()
+print mat1.max()
+print mat1.min()
+
+print numpy.arange(1,10,0.5)
+
+print mat1>2
+print mat1[mat1>2]
+print mat1+1
+print mat1[:,0]
+print mat1[:,0:2]
+
+
+=====================================================================================
+Files:-
+=======
+>> to store the data permntly
+>> File system
+>> File-object
+>> every file 3 ref points  BOF-0
+                            CUR-1
+                            EOF-2
+>> Modes r/w/a/    r+/w+/a+
+         rb/wb/ab  rb+/wb+/ab+
+>> random access of the file
+   fileobject.seek(no_bytes, fromREFPoint)
+   fileobject.tell() 
+
+
+How to open a file:-
+--------------------
+f1 = open("new.txt","w")
+
+How to close a file:-
+---------------------
+f1.close()
+
+How to write into the file:-
+-----------------------------
+f1 = open("new.txt","w")
+
+f1.write("10\n")
+f1.write("20\n")
+f1.write("50\n")
+f1.write("40\n")
+f1.write("30")
+
+f1.close()
+
+
+How to read from the file:-
+---------------------------
+f1 = open("new.txt","r")
+for elem in f1:   # this loop will read the file contents line by line
+   print elem
+
+f1.close()
+
+
+Other Fns:-
+----------
+string = fob.read()     # complete file is read & Return it like a string
+string = fob.read(1024) # reads 1024 bytes & Returns it like a string/bytes
+string = fob.readline() # reads one line upto \n or EOF
+lst    = fob.readlines() # Complete file & returns it like a LIST
+
+
+Complete this in-complete program:-
+===================================
+
+fob = open("data.txt","w+")
+
+fob.write("this is a sample data\n")
+fob.write("hello world of unix\n")
+fob.write("sample data was added")
+
+f1.seek(0,0)
+
+
+for elem in f1:
+  elem = elem.strip()
+  wlst = elem.split()
+  print wlst[0],wlst[-1]
+
+
+fob.close()
+
+alst = map(lambda x : (x.split()[0],x.split()[-1]), f1)
+
+
+
+Check if the file exists:-
+--------------------------
+import os
+
+if os.path.isfile("new.txt"):
+   print "File exists"
+else:
+   print "File does't exists"
+
+
+Context manager on files:-
+---------------------------
+>> context manager has 2 special methods - enter()/exit()
+>> on file enter() - it own the file object
+           exit()  - automatically closes the file 
+>> context managers are used to - AUTO CLOSE a file
+>> support this "with" keyword
+
+
+
+ex:
+
+with open("new.txt","r") as fob:
+   print fob
+   print fob.read()
+print fob
+
+====================================================================================
+Functions:-
+===========
+>> Fns are OBJECts
+>> Fns has to be defined before its CALL
+>> Fns can return multiple values
+>> Variable defined within the fn are by default LOCAL
+>> There is No Type-checking like "C"
+
+>> call by value & call by REference
+>> special fns locals()/globals()
+>> keyword - global
+>> positional/default/keyword args
+>> variable args
+>> nested Functions
+
+
+Guess:-
+=======
+def callmeback():
+   num=1234
+   print "in the fn = ",num
+
+
+num=7777
+print "before = ",num
+callmeback()
+print "After  = ",num
+
+A) 7777
+B) 1234
+C) Error - undefined variable
+D) Junk
+
+
+
+
+Guess:-
+=======
+>> I need to print 7777 & 1234 in the function
+
+def callmeback():
+   num=1234
+   print "in the fn = ",num
+   print "in the fn = ",globals()["num"]
+
+num=7777
+print "before = ",num
+callmeback()
+print "After  = ",num
+
+
+
+Guess:-
+=======
+def callmeback():
+   global num
+   num=1234
+   print "in the fn = ",num
+
+
+num=7777
+print "before = ",num
+callmeback()
+print "After  = ",num   # I need the output as 1234
+
+
+Guess:-
+=======
+def square(nlst):
+   
+   nlst[0] = 0  
+   nlst[1] = 0    OR nlst[0:3] = [0] * 3
+   nlst[2] = 0 
+  
+
+
+numlst = [10,20,30,40,50]
+square(numlst)
+print numlst
+
+
+positional args:-
+-----------------
+def simpleint(pri,time,rate):
+  pass
+
+simpleint(15000, 12, 16)   # correct
+simpleint(16,15000,12)     # Wrong
+
+
+default args:-
+--------------
+def simpleint(pri=10000,time=24,rate=12):
+  pass
+
+simpleint(25000)   # correct
+simpleint(17000,48) # correct
+simpleint(10000,12,6) # correct
+simpleint()           # correct
+
+keyword args:-
+--------------
+def simpleint(pri=10000,time=24,rate=12):
+  pass
+
+
+I Want the time to be 60 emi let the pri & rate be default
+simpleint(time=60)
+simpleint(15000)
+
+
+variable args:-
+---------------
+>> args will be a TUPLE
+
+def fun(*args):
+  print args
+
+
+fun()
+fun(1,2,3)
+fun(10,20)
+fun(4)
+fun(1,2,3,4,5)
+
+
+
+
+
+
+
+variable keyword args:-
+-----------------------
+>> type of kwargs - dictionary
+
+def fun(**kwargs):
+  print kwargs
+
+
+fun(today=10,later=20,then=30,off=40)
+fun()
+fun(this=1,that=3)
+
+
+hybrid args:-
+-------------
+>> always non-keyword first & then keywords
+
+def fun(*args,**kwargs):
+  pass
+
+
+Nested functions:-
+------------------
+
+
+
+ex1:
+def outer():
+   print "hello from outer"
+   def inner():
+     print "hello from inner"
+   inner()
+
+
+outer()
+
+
+ex2:
+>> can we call inner the fuction - outside the FUNCTION
+>> we have return the ADDRESS of the inner function
+
+def outer():
+   print "hello from outer"
+   def inner():
+     print "hello from inner"
+   return inner
+
+
+res1 = outer()
+res2 = outer()
+res3 = outer()
+
+always res1 , res2, res3 will be different address
+
+
+ex3:
+
+>> assumptions
+   scope of the variable - 
+   lifetime of variable  - 
+
+
+def outer(name):
+   print "hello from outer"
+   def inner():
+     print "hello from inner",name
+   return inner
+
+
+res1 = outer("hari")
+res2 = outer("ravi")
+res3 = outer("manu")
+
+
+
+
+
+
+
+
+Modules:-
+=========
+>> Library
+>> collection of fn/classes/variables
+>> file exten shld be ".PY"
+>> it maintains its own namespace - samename as filename - __name__
+>> include a library 
+   import modulename
+   from modulename import *
+   from modulename import fn/class/variable
+>> once a module is imported - it autocreates ".PYC"
+>> module search path
+   import sys
+   print sys.path
+   OR
+   env variable - PYTHONPATH
+
+
+
+>>diff Methods of including a module
+>>module search path
+
+PAckages:-
+==========
+How to write classes in python:-
+================================
+Detailed class developement
+===========================
+operator overloading:-
+======================
+ a+b   def __add__(a,b)
+ a-b   def __sub__(a,b)
+ a*b   def __mul__(a,b)
+ a/b   def __truediv__(a,b)
+ a//b  def __floordiv__(a,b)
+
+ a==b  def __eq__(a,b)
+ a!=b  def __ne__(a,b)
+ a>b   def __gt__(a,b)
+ a>=b  def __ge__(a,b)
+ a<b   def __lt__(a,b)
+ a<=b  def __le__(a,b)
+
+ex:
+class Dates(object):
+   def __init__(self,day,month,year):
+    self.day = day
+    self.month = month
+    self.year  = year
+
+   def __eq__(self, other):
+    print "******** Hey u called me!!!!! ******"
+    if self.day==other.day and self.month == other.month and self.year == other.year :
+     return True
+    else:
+     return False
+   def show(self):
+    print "%s-%s-%s" %(self.day,self.month,self.year)
+
+
+
+dt1 = Dates(15,"aug",1947)
+dt2 = Dates(15,"aug",1947)
+
+dt1.show()
+dt2.show()
+
+if dt1 == dt2 :
+   print "same day"
+else:
+   print "Diff days"
+
+
+Ex for inheritance:-
+--------------------
+class Alpha(object):
+  def __init__(self,mem1):
+     self.mem1 = mem1
+
+  def ashow(self):
+     print self.mem1
+
+
+class Beta(Alpha):                  #***how to inherit a class*****
+  def __init__(self,mem1,mem2):
+     Alpha.__init__(self,mem1)      #**** how to ctor chaining in python*****
+     self.mem2 = mem2
+
+  def bshow(self):
+     print self.mem2
+
+btob = Beta(45,20)
+print btob.__dict__
+print dir(btob)
+
+
+Ex for MEthod over riding:-
+---------------------------
+
+super(DERIVEDCLASS,self).OVERRIDDENMETHOD()  # py2
+super().OVERRIDDENMETHOD()                   # py3
+
+OR
+
+BASECLASSNAME.OVERRIDDENMETHOD()  # py2 & py3
+
+====================================================================================
+Threads & Process:-
+===================
+
+import multiprocessing - Process
+import threading       - Thread
+import subprocess
+import concurrent
+
+
+ex:-
+====
+import time
+import os
+import multiprocessing as mp
+import threading as tp
+
+def job1():
+  time.sleep(5)
+  print "Hello from job1 = ",os.getpid(),tp.currentThread().getName()
+
+def job2():
+  time.sleep(7)
+  print "Hello from job2 = ",os.getpid(),tp.currentThread().getName()
+
+
+if __name__ == "__main__":   # this check is compulsory for multiprocess models
+  
+  print "Main starts = ",os.getpid()
+  th1 = tp.Thread(target=job1,args=())
+  th2 = tp.Thread(target=job2,args=())
+  start = time.time()
+  th1.start()
+  th2.start()
+  th1.join()
+  th2.join()
+  end = time.time()
+  print "Time took = ",end-start
+  
+
+
+ex:
+import time
+import os
+import multiprocessing as mp
+
+def job1(q,l):
+  time.sleep(5)
+  l.acquire()
+  q.put("Hey from job1")
+  print "Hello from job1 = ",os.getpid()
+  l.release()
+
+def job2(q,l):
+  time.sleep(7)
+  l.acquire()
+  q.put("Hai from JJJJOB2")
+  print "Hello from job2 = ",os.getpid()
+  l.release()
+
+if __name__ == "__main__":   # this check is compulsory for multiprocess models
+  queue = mp.Queue()
+  lock  = mp.Lock()  
+  print "Main starts = ",os.getpid()
+  th1 = mp.Process(target=job1,args=(queue,lock))
+  th2 = mp.Process(target=job2,args=(queue,lock))
+  start = time.time()
+  th1.start()
+  th2.start()
+  th1.join()
+  th2.join()
+  end = time.time()
+  print "MEssages are = "
+  print queue.get()
+  print queue.get()
+  print "Time took = ",end-start
+
+ex:
+import os
+import time
+from multiprocessing import Pool
+
+def funct(num):
+  time.sleep(2)
+  return num*num
+
+
+
+if __name__ == "__main__":
+ numlst = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+ p = Pool(15)
+ start = time.time()
+ reslst = p.map(funct,numlst)
+ end = time.time()
+ print "Took = ",end-start
+ print reslst
+
+
+MEssage Queue for IPC 
+>> rabbitMQ
+>> DXL
+
+
+How to run a OS command in python:-
+------------------------------------
+import os
+
+res = os.system("ipconfig")
+
+print res
+
+
+import subprocess
+
+res = subprocess.check_output("ipconfig",shell=True)
+
+print res
+
+
+
+
+
+Design PAtterns:-
+=================
+iterator pattern:-
+------------------
+>> any class can be iterable
+   by over-riding 2 methods
+   def __iter__
+   
+   def next      in py2
+   def __next__  in py3
+
+
+class Emps(object):
+   counter=0
+   def __init__(self):
+     self.name = "Arun"
+     self.dept = "Sales"
+     self.sal  = 1500
+
+   def __iter__(self):
+     return self
+  
+   def next(self):
+     Emps.counter+=1
+     if Emps.counter==1:
+       return self.name
+     elif Emps.counter==2:
+       return self.dept
+     elif Emps.counter==3:
+       return self.sal
+     else:
+       raise StopIteration
+
+e1 = Emps()
+for elem in e1:
+   print elem
+
+
+
+Generator:-
+===========
+>> any fn/method has a keyword "yield", such fns when called they will
+   return a "generator object"
+>> generator objects starts the execution only when iterated
+
+
+ex:-
+====
+def getzones():
+  yield "south"
+  yield "north"
+  yield "east"
+  yield "west"
+
+
+res = getzones()
+print res
+
+
+ex:
+def getzones():
+  yield "south"
+  yield "north"
+  yield "east"
+  yield "west"
+  yield "10"
+  yield "20"
+
+
+res = getzones()
+next(res)
+next(res)
+next(res)
+
+print list(res)
+
+Decorator:-
+===========
+
+
+
+Exception HAndling:-
+====================
+
+try:
+    code
+    code
+    code
+    code
+except ValueError as e1:
+    print e1
+except TypeError as e2:
+    print e2
+except Exception as e3:
+    print type(e3),e3
+else:
+    print "hello"
+finally:
+    print "Don"
+
+
+
+How to generate a exceptiob? - raise IOError("message")
+import traceback
+import sys
+
+traceback.print_exc()
+print sys.exc_info()
+
+
+
+Core Libs:-
+===========
+>> re  - perform regex
+>> os  - interface b/w python program & underlying kernel
+>> sys - interface b/w python program & Python interpreter
+>> glob - ls/dir
+>> logging - logger
+>> db      - db communication
+
+
+import re
+
+name = raw_input("Enter u r name : ")
+
+if re.search("^a.*a$",name,re.I):
+   print "yes"
+else:
+   print "no"
+
+re.match("a.*a",name)
+re.sub("\s+"," ",name)   - replace multiple spaces with single space
+re.split("[,\s:;]", astr) - we can specify multiple delimiters in re.split
+re.findall()
+re.finditer()
+re.compile()
+
+import os
+
+print os.name
+print os.getcwd()
+print os.getpid()
+
+print os.listdir(".")
+
+os.system("ipconfig")
+os.remove("one.txt")
+os.mkdir("hello")
+
+os.environ["PATH"]
+os.path.isfile("one.txt")
+os.walk(".")
+
+
+import sys
+
+print sys.platform
+
+sys.getsizeof(10)
+sys.getrefcounf(10)
+sys.path.append("C:\\that\\this")
+sys.argv   --- command line args
+
+sys.stdin
+sys.stdout
+sys.stderr
+
+import logging
+
+logging.basicConfig(level=logging.DEBUG,filename = "err.log")
+
+loggging.debug("messg")
+loggging.info("messg")
+loggging.warning("messg")
+loggging.error("messg")
+loggging.critical("messg")
+
+
+database communication:-
+========================
+>> any DB
+>> any NOSQL
+
+
+import sqlite3
+
+con = sqlite3.connect("master.db")
+
+cur = con.cursor()
+
+cur.execute("create table if not exists emps(name text, sal integer)")
+
+cur.execute("insert into emps values('arun',10000)")
+cur.execute("insert into emps values('arun',10000)")
+cur.execute("insert into emps values('arun',10000)")
+cur.execute("insert into emps values('arun',10000)")
+
+con.commit()
+
+cur.execute("Select * from emps")
+
+for elem in cur.fetchall():
+   print elem
+con.close()
+
+
+Functional programming:-
+========================
+>> lambda expression
+>> map
+>> filter    - expression return boolean
+>> reduce    - expression is recursive
+
+>> list comprehension    reslst = [elem*elem for elem in numlst]
+>> dict comprehension    alst=["a","b","c","d"]
+                         blst=[10,20,30,40]
+                         alpha = {elem1:elem2 for elem1,elem2 in zip(alst,blt)}
+>> partial fns
+
+
+def power(base,number):
+  ans = number ** base
+  return ans
+square = partial(power,2)
+cube   = partial(power,3)
+
+square(5)
+
+other library support:-
+import functools
+import itertools
+
+
+
+Dynamic Exec of python code:-
+=============================
+>> eval(string)  - read
+>> exec(string)  - read & Write
+
+
+a1="hello"
+a2="world"
+a3="of"
+a4="unix"
+a5="message"
+
+
+varname="a"
+for index in xrange(1,6):
+   newname = varname+str(index)
+   print eval(newname)
+
+
+GUI Libs in python:-
+====================
+
+1) wxPython - C++
+2) pyTk       - 
+3) GTK+
+4) pyQt       - Qt
+
+
+Tools:-
+=======
+Testing python -WBT - unittest/pytest/noise
+
+import mylib
+import unittest
+
+class mytest(unittest.TestCase):
+   
+   def setUp(self):
+      fixtures
+   def tearDown(self):
+      destroy fixture
+
+   def test_add(self):
+      self.assertEquals(mylib.add(10,20), 30)
+
+
+if __name__ == "__main__":
+   unittest.main()
+ 
+
+
+debug               - GUI/CLI
+
+
+python -m pdb  first.py
+
+
+
+
+docstring           - def fun():
+                        ''' u write anything
+                        here it will be the doc
+                        '''
+                        a=10  
+                        b=20
+                        c=a+b
+                        print res
+
+install a lib       -  pip install numpy
+                       pip uinstall numpy
+                       pip list
+
+distribute a lib    - 
+
+create a file named "setup.py"
+--------------------------------
+from distutils.core import setup
+
+setup(name = "mylib" ,
+      version = "1,0" ,
+      py_modules=["mylib"]
+     )
+
+
+C:\> python setup.py sdist
+
+it will create a folder "dist"
+under "dist" folder u will have file named"
+
+mylib1.0.zip
+
+
+
+
+
+
+
+
+
+
+ 

@@ -1,0 +1,124 @@
+VPC Creation
+____________________________________________________________________________________
+ Amazon Management Console
+   
+  ** Create VPC
+    *Services
+     *Networking
+      *VPC
+	   *Your VPC
+	   * Create VPC
+	   * Name
+		* CIDR Block (Any range like 10.0.0.0/16)   
+		* Tenancy  (Set it default)
+		* Create VPC
+_____________________________________________________________________________________
+** Create Subnet
+
+	Create two subnets 
+
+	  1. Public
+	  2. Private
+
+     ** Public subnet 	  
+
+	  *Networking
+	    *VPC
+		*Subnets
+		*Create Subnet
+		*Name
+		*Choose VPC which you created 
+		*Availability zone-(us-east-1b)
+		*CIDR-(10.0.1.0/24) which gives 251 address in this range
+		*Create
+	 
+     **Private subnet
+	  
+	  *Create subnet
+	  *Name
+	  *Choose VPC
+          *Availability zone-(us-east-1c)
+	  *CIDR-(10.0.2.0/24)
+	  *Create
+______________________________________________________________________________________
+**Create Internet Gateway
+      
+	  *Networking
+	   *VPC
+	   *Internet Gateway
+	   *Create Internet Gateway
+	   *Name
+	   *Create
+	   *Attach to VPC
+_______________________________________________________________________________________	   
+**Create custom route table  
+      
+	  *Networing
+	  *VPC
+	  *Route table
+	  *Create Route table
+	  *Pick VPC
+	  *Create
+	  *Launch
+	  *Routes
+	  *you see main route table(Edit the route table you created)
+	  *Edit
+	  *Add route
+	  *Destination(0.0.0.0/0)
+	  *Target (it gives option of our internet gateway)
+	  *Save
+    * Subnet associators
+	  *Public and private subnet(both are under main route table with no internet)
+	  *Edit
+	  *Select public subnet 
+	  *Save
+________________________________________________________________________________________    
+**Create NAT GATEWAY
+      
+	  *Networking
+	  *VPC
+	  *Subnets
+	  *Copy public subnet ID
+	  *NAT Gateway
+	  *Create NAT Gateway
+	  *Subnet(search for public subnet Id which we copied because NAT GATEWAY should be under public)
+	  *Elastic IP
+	  *NAT Gate way created
+	  *Edit route table(check for custom route table which we created earlier)
+	  *Check main route table (name it )and check for subnet association you find private subnet
+	  *Put a route in there that points to NAT gateway
+	  *Routes
+	  *Edit
+	  *Add another route(0.0.0.0/0)
+	  *Target should be NAT ID Instance
+	  *Save
+________________________________________________________________________________________    
+**Create SECURITY GROUPS
+      
+  *We will be creating two security groups.
+        1.	To host web server 
+        2.	To host Database(Private Instances)
+    
+       *Public 
+	  *Networking
+	  *VPC
+	  *Security groups
+	  *Create security groups
+	  *Name
+	  *VPC
+	  *Create
+	  *Inbound (0.0.0.0/0)
+    
+      *Private 
+	  *Networking
+	  *VPC
+	  *Security groups
+	  *Create security groups
+	  *Name 
+	  *VPC
+	  *Create(Sql database server)-allow sql server port
+	  *source(place DB server in private subnet and allow traffic to come from web server so the web server will accept traffic and will then go to database to get info)
+	  *select webserver security group.
+      This way you allow one instance from public subnet to communicate with instance in private subnet via internet.
+  ____________________________________________________________________________________________________________________________
+	  Create instances accordingly to place in private or public subnet to match your requirement.
